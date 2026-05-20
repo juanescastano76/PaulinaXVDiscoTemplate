@@ -1,184 +1,119 @@
-"use client"
+"use client";
 
-import { useState, useRef, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Music, Pause, Play, Volume2, VolumeX } from "lucide-react"
-import { invitationConfig } from "@/lib/invitation-config"
+import { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Volume2, VolumeX, Music } from "lucide-react";
 
 export function MusicPlayer() {
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [isMuted, setIsMuted] = useState(false)
-  const [showPrompt, setShowPrompt] = useState(true)
-  const [hasError, setHasError] = useState(false)
-  const audioRef = useRef<HTMLAudioElement | null>(null)
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [showPrompt, setShowPrompt] = useState(true);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
-    // Create audio element
-    audioRef.current = new Audio(invitationConfig.backgroundMusic)
-    audioRef.current.loop = true
-    audioRef.current.volume = 0.5
-    
-    // Handle errors gracefully
-    audioRef.current.onerror = () => {
-      setHasError(true)
-      setShowPrompt(false)
-    }
+    // Auto-hide prompt after 5 seconds
+    const timer = setTimeout(() => {
+      setShowPrompt(false);
+    }, 5000);
 
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause()
-        audioRef.current = null
-      }
-    }
-  }, [])
+    return () => clearTimeout(timer);
+  }, []);
 
   const togglePlay = () => {
-    if (!audioRef.current) return
-
-    if (isPlaying) {
-      audioRef.current.pause()
-    } else {
-      audioRef.current.play().catch(() => {
-        // Autoplay blocked, user needs to interact
-      })
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play().catch(() => {
+          // Autoplay was prevented
+          console.log("Autoplay prevented");
+        });
+      }
+      setIsPlaying(!isPlaying);
+      setShowPrompt(false);
     }
-    setIsPlaying(!isPlaying)
-    setShowPrompt(false)
-  }
-
-  const toggleMute = () => {
-    if (!audioRef.current) return
-    audioRef.current.muted = !isMuted
-    setIsMuted(!isMuted)
-  }
-
-  // Don't render anything if music file has an error
-  if (hasError) {
-    return null
-  }
+  };
 
   return (
     <>
-      {/* Initial prompt to play music */}
+      <audio
+        ref={audioRef}
+        loop
+        preload="auto"
+        src="/music/thousandYears.mp3"
+      />
+
+      {/* Music prompt */}
       <AnimatePresence>
         {showPrompt && (
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 50 }}
-            className="fixed bottom-24 left-1/2 -translate-x-1/2 z-50"
+            exit={{ opacity: 0, y: 20 }}
+            className="fixed bottom-24 right-4 z-50 bg-card border border-border rounded-xl p-4 shadow-lg max-w-[200px]"
           >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            <p className="text-sm text-foreground mb-2">
+              ¿Deseas activar la música?
+            </p>
+            <button
               onClick={togglePlay}
-              className="flex items-center gap-3 px-6 py-3 rounded-full shadow-lg shadow-silver/30"
-              style={{ background: 'linear-gradient(135deg, var(--silver-dark), var(--silver-light))' }}
+              className="w-full py-2 px-4 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
             >
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-              >
-                <Music className="w-5 h-5 text-background" />
-              </motion.div>
-              <span className="text-background font-medium">Reproducir musica</span>
-            </motion.button>
+              Activar música
+            </button>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Floating music controls */}
-      <div className="fixed bottom-4 left-4 z-50 flex flex-col gap-2">
-        {/* Mute button - only show when playing */}
-        <AnimatePresence>
-          {isPlaying && (
-            <motion.button
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0 }}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={toggleMute}
-              className="w-10 h-10 rounded-full bg-card border border-border shadow-lg flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
-            >
-              {isMuted ? (
-                <VolumeX className="w-4 h-4" />
-              ) : (
-                <Volume2 className="w-4 h-4" />
-              )}
-            </motion.button>
-          )}
-        </AnimatePresence>
-
-        {/* Main play/pause button */}
-        <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={togglePlay}
-          className={`w-14 h-14 rounded-full shadow-lg flex items-center justify-center relative overflow-hidden ${
-            isPlaying
-              ? "shadow-silver/30"
-              : "bg-card border border-border"
-          }`}
-          style={isPlaying ? { background: 'linear-gradient(135deg, var(--silver-dark), var(--silver-light))' } : undefined}
-        >
-          {/* Animated rings when playing */}
-          {isPlaying && (
-            <>
-              <motion.div
-                className="absolute inset-0 border-2 border-white/30 rounded-full"
-                animate={{ scale: [1, 1.5], opacity: [0.5, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              />
-              <motion.div
-                className="absolute inset-0 border-2 border-white/30 rounded-full"
-                animate={{ scale: [1, 1.5], opacity: [0.5, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity, delay: 0.5 }}
-              />
-            </>
-          )}
-
-          {/* Icon */}
+      {/* Floating music button */}
+      <motion.button
+        onClick={togglePlay}
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ delay: 0.5 }}
+        className="fixed bottom-6 right-4 z-50 w-12 h-12 rounded-full bg-primary text-primary-foreground shadow-lg flex items-center justify-center hover:bg-primary/90 transition-colors"
+        aria-label={isPlaying ? "Pausar música" : "Reproducir música"}
+      >
+        {isPlaying ? (
           <motion.div
-            animate={isPlaying ? { rotate: 360 } : { rotate: 0 }}
-            transition={{ duration: 3, repeat: isPlaying ? Infinity : 0, ease: "linear" }}
+            animate={{ scale: [1, 1.1, 1] }}
+            transition={{ repeat: Infinity, duration: 1 }}
           >
-            {isPlaying ? (
-              <Pause className="w-6 h-6 text-background relative z-10" />
-            ) : (
-              <Play className="w-6 h-6 text-muted-foreground relative z-10 ml-0.5" />
-            )}
+            <Volume2 className="w-5 h-5" />
           </motion.div>
-        </motion.button>
-      </div>
+        ) : (
+          <VolumeX className="w-5 h-5" />
+        )}
+      </motion.button>
 
-      {/* Visualizer bars when playing */}
+      {/* Music playing indicator */}
       <AnimatePresence>
         {isPlaying && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed bottom-20 left-4 z-40 flex items-end gap-1"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            className="fixed bottom-20 right-4 z-50 flex items-center gap-2 bg-card/80 backdrop-blur-sm border border-border rounded-full px-3 py-1.5"
           >
-            {[...Array(4)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="w-1 rounded-full"
-                style={{ background: 'linear-gradient(to top, var(--silver-dark), var(--silver-light))' }}
-                animate={{
-                  height: [8, 16 + Math.random() * 12, 8],
-                }}
-                transition={{
-                  duration: 0.4 + Math.random() * 0.3,
-                  repeat: Infinity,
-                  delay: i * 0.1,
-                }}
-              />
-            ))}
+            <Music className="w-3 h-3 text-primary" />
+            <div className="flex gap-0.5">
+              {[...Array(4)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  animate={{
+                    height: ["4px", "12px", "4px"],
+                  }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: 0.8,
+                    delay: i * 0.1,
+                  }}
+                  className="w-0.5 bg-primary rounded-full"
+                />
+              ))}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
     </>
-  )
+  );
 }

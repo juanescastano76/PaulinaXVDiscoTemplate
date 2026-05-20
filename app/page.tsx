@@ -38,9 +38,9 @@ export default function InvitationPage() {
       <EventSection />
       <PhotoGridSection />
       <PartySection />
+      <MusicPlayer />
       <GiftsSection />
       <FooterSection />
-      <MusicPlayer />
     </main>
   );
 }
