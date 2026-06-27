@@ -115,9 +115,8 @@ export const invitationConfig = {
   dressCode: {
     style: "Silver Glamour",
     suggestions: [
-      "Adultos y jovenes formal",
-      "Mujeres; Vestido coctel negro corto",
-      "Hombre: Pantalon y camisa formal",
+      "Adultos formal",
+      "Jovenes: Hombres: Pantalon y una camisa formal. Mujeres: Vestido coctel negro corto ",
     ],
   },
 
