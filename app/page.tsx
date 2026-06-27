@@ -8,6 +8,7 @@ import { PartySection } from "@/components/invitation/party-section";
 import { GiftsSection } from "@/components/invitation/gifts-section";
 import { MusicPlayer } from "@/components/invitation/music-player";
 import dynamic from "next/dynamic";
+import { Suspense } from "react";
 
 const HeroSection = dynamic(
   () =>
@@ -34,7 +35,10 @@ export default function InvitationPage() {
     <main className="min-h-screen bg-background overflow-x-hidden">
       <HeroSection />
       <CountdownSection />
-      <GuestSection />
+      <Suspense fallback={"cargando invitados"}>
+        <GuestSection />
+      </Suspense>
+
       <EventSection />
       {/* <PhotoGridSection /> */}
       <PartySection />
