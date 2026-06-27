@@ -1,28 +1,28 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { motion } from "framer-motion"
-import { Gift, Copy, Check, CreditCard } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Gift, Copy, Check, CreditCard } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogDescription,
-} from "@/components/ui/dialog"
-import { invitationConfig } from "@/lib/invitation-config"
+} from "@/components/ui/dialog";
+import { invitationConfig } from "@/lib/invitation-config";
 
 export function GiftsSection() {
-  const [bankModalOpen, setBankModalOpen] = useState(false)
-  const [copied, setCopied] = useState<string | null>(null)
-  const { bankDetails, messages } = invitationConfig
+  const [bankModalOpen, setBankModalOpen] = useState(false);
+  const [copied, setCopied] = useState<string | null>(null);
+  const { bankDetails, messages } = invitationConfig;
 
   const handleCopy = (text: string, field: string) => {
-    navigator.clipboard.writeText(text)
-    setCopied(field)
-    setTimeout(() => setCopied(null), 2000)
-  }
+    navigator.clipboard.writeText(text);
+    setCopied(field);
+    setTimeout(() => setCopied(null), 2000);
+  };
 
   return (
     <section className="py-16 px-4 bg-gradient-to-b from-card to-background">
@@ -32,13 +32,17 @@ export function GiftsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-6 shadow-lg shadow-silver/30" style={{ background: 'linear-gradient(135deg, var(--silver-dark), var(--silver-light))' }}>
+          <div
+            className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-6 shadow-lg shadow-silver/30"
+            style={{
+              background:
+                "linear-gradient(135deg, var(--silver-dark), var(--silver-light))",
+            }}
+          >
             <Gift className="w-8 h-8 text-background" />
           </div>
           <h3 className="text-2xl sm:text-3xl text-foreground mb-4">Regalos</h3>
-          <p className="text-muted-foreground mb-8">
-            {messages.gifts}
-          </p>
+          <p className="text-muted-foreground mb-8">{messages.gifts}</p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -50,17 +54,19 @@ export function GiftsSection() {
               size="lg"
               onClick={() => setBankModalOpen(true)}
               className="text-background shadow-lg shadow-silver/30"
-              style={{ background: 'linear-gradient(135deg, var(--silver), var(--silver-light))' }}
+              style={{
+                background:
+                  "linear-gradient(135deg, var(--silver), var(--silver-light))",
+              }}
             >
-              <CreditCard className="w-5 h-5 mr-2" />
-              Datos bancarios
+              LLUVIA DE SOBRES
             </Button>
           </motion.div>
         </motion.div>
       </div>
 
       {/* Bank Details Modal */}
-      <Dialog open={bankModalOpen} onOpenChange={setBankModalOpen}>
+      {/* <Dialog open={bankModalOpen} onOpenChange={setBankModalOpen}>
         <DialogContent className="sm:max-w-md bg-card">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2 text-foreground">
@@ -106,9 +112,9 @@ export function GiftsSection() {
             </div>
           </div>
         </DialogContent>
-      </Dialog>
+      </Dialog> */}
     </section>
-  )
+  );
 }
 
 function BankField({
@@ -117,10 +123,10 @@ function BankField({
   onCopy,
   copied,
 }: {
-  label: string
-  value: string
-  onCopy: () => void
-  copied: boolean
+  label: string;
+  value: string;
+  onCopy: () => void;
+  copied: boolean;
 }) {
   return (
     <div className="flex items-center justify-between p-3 bg-background rounded-lg border border-border">
@@ -141,5 +147,5 @@ function BankField({
         )}
       </Button>
     </div>
-  )
+  );
 }

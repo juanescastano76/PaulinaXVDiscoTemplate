@@ -36,7 +36,7 @@ export default function InvitationPage() {
       <CountdownSection />
       <GuestSection />
       <EventSection />
-      <PhotoGridSection />
+      {/* <PhotoGridSection /> */}
       <PartySection />
       <MusicPlayer />
       <GiftsSection />

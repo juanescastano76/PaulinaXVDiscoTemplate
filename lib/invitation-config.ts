@@ -6,7 +6,7 @@
 export const invitationConfig = {
   // Información del evento
   event: {
-    name: "Isabella",
+    name: "Paulina",
     title: "Mis XV años",
     date: new Date("2026-06-15T17:00:00"),
     endDate: new Date("2026-06-16T02:00:00"),
@@ -49,56 +49,56 @@ export const invitationConfig = {
   ],
 
   // Photo grid (nuevo formato)
-  photoGrid: [
-    {
-      id: 1,
-      year: "2011",
-      description: "Mi primer cumpleaños",
-      image: "/images/gallery-1.jpg",
-    },
-    {
-      id: 2,
-      year: "2013",
-      description: "Dia de princesas",
-      image: "/images/gallery-2.jpg",
-    },
-    {
-      id: 3,
-      year: "2015",
-      description: "Mi primera comunion",
-      image: "/images/gallery-3.jpg",
-    },
-    {
-      id: 4,
-      year: "2016",
-      description: "Mis 5 añitos",
-      image: "/images/gallery-4.jpg",
-    },
-    {
-      id: 5,
-      year: "2018",
-      description: "Vacaciones en familia",
-      image: "/images/gallery-5.jpg",
-    },
-    {
-      id: 6,
-      year: "2020",
-      description: "Cumpleaños en casa",
-      image: "/images/gallery-6.jpg",
-    },
-    {
-      id: 7,
-      year: "2022",
-      description: "Con mis amigas",
-      image: "/images/gallery-6.jpg",
-    },
-    {
-      id: 8,
-      year: "2024",
-      description: "Viaje de graduacion",
-      image: "/images/gallery-2.jpg",
-    },
-  ],
+  // photoGrid: [
+  //   {
+  //     id: 1,
+  //     year: "2011",
+  //     description: "Mi primer cumpleaños",
+  //     image: "/images/gallery-1.jpg",
+  //   },
+  //   {
+  //     id: 2,
+  //     year: "2013",
+  //     description: "Dia de princesas",
+  //     image: "/images/gallery-2.jpg",
+  //   },
+  //   {
+  //     id: 3,
+  //     year: "2015",
+  //     description: "Mi primera comunion",
+  //     image: "/images/gallery-3.jpg",
+  //   },
+  //   {
+  //     id: 4,
+  //     year: "2016",
+  //     description: "Mis 5 añitos",
+  //     image: "/images/gallery-4.jpg",
+  //   },
+  //   {
+  //     id: 5,
+  //     year: "2018",
+  //     description: "Vacaciones en familia",
+  //     image: "/images/gallery-5.jpg",
+  //   },
+  //   {
+  //     id: 6,
+  //     year: "2020",
+  //     description: "Cumpleaños en casa",
+  //     image: "/images/gallery-6.jpg",
+  //   },
+  //   {
+  //     id: 7,
+  //     year: "2022",
+  //     description: "Con mis amigas",
+  //     image: "/images/gallery-6.jpg",
+  //   },
+  //   {
+  //     id: 8,
+  //     year: "2024",
+  //     description: "Viaje de graduacion",
+  //     image: "/images/gallery-2.jpg",
+  //   },
+  // ],
 
   // URL de la cancion de fondo
   // Coloca tu archivo MP3 en public/music/party-song.mp3
