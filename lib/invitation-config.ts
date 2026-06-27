@@ -131,7 +131,7 @@ export const invitationConfig = {
     {
       icon: "🎵",
       title: "Horarios",
-      description: "La fiesta inicia a las 17:00 hs puntualmente",
+      description: "La fiesta inicia a las 19:00 hs puntualmente",
     },
     {
       icon: "📸",
