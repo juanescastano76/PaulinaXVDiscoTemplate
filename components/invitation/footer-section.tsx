@@ -64,7 +64,7 @@ export function FooterSection() {
           {/* Photo sharing message */}
           <div className="mb-12">
             <h3 className="text-2xl sm:text-3xl text-foreground mb-4">
-              Una gran fiesta junto a vos
+              Una gran fiesta junto a ti
             </h3>
             <p className="text-muted-foreground mb-6">{messages.footer}</p>
             <div

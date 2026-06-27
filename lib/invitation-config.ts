@@ -8,8 +8,8 @@ export const invitationConfig = {
   event: {
     name: "Paulina",
     title: "Mis XV años",
-    date: new Date("2026-06-15T17:00:00"),
-    endDate: new Date("2026-06-16T02:00:00"),
+    date: new Date("2026-08-08T19:00:00"),
+    endDate: new Date("2026-08-08T23:00:00"),
     venue: "Finca Los Pinos",
     address: "Finca Los Pinos",
     city: "Medellin",
@@ -19,14 +19,9 @@ export const invitationConfig = {
   // Número de WhatsApp para confirmaciones
   // Formato: código de país + número (sin espacios ni guiones)
   // Ejemplo Colombia: 573001234567
-  whatsappNumber: "573002877917",
+  whatsappNumber: "573004919621",
 
   // Lista de invitados
-  guests: [
-    { id: 1, name: "Juan García" },
-    { id: 2, name: "Sofía García" },
-    { id: 3, name: "Mateo García" },
-  ],
 
   // Número de acompañantes permitidos por invitado
   allowedCompanions: 1,
@@ -113,18 +108,16 @@ export const invitationConfig = {
     party:
       "Hagamos juntos una fiesta épica. Aquí algunos detalles a tener en cuenta.",
     gifts: "Si deseas regalarme algo más que tu hermosa presencia...",
-    footer: "Compartí tus fotos y videos de ese hermoso día",
+    footer: "Comparte tus fotos y videos de ese hermoso día",
   },
 
   // Dress code
   dressCode: {
     style: "Silver Glamour",
     suggestions: [
-      "Vestidos con brillos plateados, lentejuelas o detalles metalicos",
-      "Traje elegante en tonos oscuros o grises para los caballeros",
-      "Colores: plateado, gris, negro, blanco perla",
-      "Evitar el color blanco puro (reservado para la quinceañera)",
-      "Se permiten accesorios brillantes y joyeria plateada",
+      "Adultos y jovenes formal",
+      "Mujeres; Vestido coctel negro corto",
+      "Hombre: Pantalon y camisa formal",
     ],
   },
 
@@ -168,7 +161,7 @@ export function generateWhatsAppLink(message: string) {
 export function generateMapsLink() {
   const { venue, address, city, country } = invitationConfig.event;
   const query = encodeURIComponent(`${venue}, ${address}, ${city}, ${country}`);
-  return `https://maps.app.goo.gl/2LRSbQEw3F8PRhvR8`;
+  return `https://maps.app.goo.gl/vYoCDFh4ujv5iPno6`;
 }
 
 // Función helper para generar link de Google Calendar

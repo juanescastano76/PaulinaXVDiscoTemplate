@@ -1,27 +1,30 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { motion } from "framer-motion"
-import { Music, Shirt, Info, Sparkles } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Music, Shirt, Info, Sparkles } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogDescription,
-} from "@/components/ui/dialog"
-import { invitationConfig, generateWhatsAppLink } from "@/lib/invitation-config"
+} from "@/components/ui/dialog";
+import {
+  invitationConfig,
+  generateWhatsAppLink,
+} from "@/lib/invitation-config";
 
 export function PartySection() {
-  const [dressCodeOpen, setDressCodeOpen] = useState(false)
-  const [tipsOpen, setTipsOpen] = useState(false)
-  const { event, dressCode, tips, messages } = invitationConfig
+  const [dressCodeOpen, setDressCodeOpen] = useState(false);
+  const [tipsOpen, setTipsOpen] = useState(false);
+  const { event, dressCode, tips, messages } = invitationConfig;
 
   const handleSuggestSong = () => {
-    const message = `Hola! Me gustaria sugerir una cancion para la playlist de los XV de ${event.name}:\n\n`
-    window.open(generateWhatsAppLink(message), "_blank")
-  }
+    const message = `Hola! Me gustaria sugerir una cancion para la playlist de los XV de ${event.name}:\n\n`;
+    window.open(generateWhatsAppLink(message), "_blank");
+  };
 
   return (
     <section className="py-16 px-4 bg-card">
@@ -53,7 +56,13 @@ export function PartySection() {
             transition={{ delay: 0.1 }}
             className="bg-background rounded-2xl p-6 border border-border text-center hover:shadow-md transition-shadow"
           >
-            <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: 'linear-gradient(135deg, var(--silver-dark), var(--silver-light))' }}>
+            <div
+              className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+              style={{
+                background:
+                  "linear-gradient(135deg, var(--silver-dark), var(--silver-light))",
+              }}
+            >
               <Music className="w-8 h-8 text-background" />
             </div>
             <h4 className="text-lg font-medium text-foreground mb-2">Musica</h4>
@@ -63,7 +72,10 @@ export function PartySection() {
             <Button
               onClick={handleSuggestSong}
               className="text-background shadow-lg shadow-silver/30"
-              style={{ background: 'linear-gradient(135deg, var(--silver), var(--silver-light))' }}
+              style={{
+                background:
+                  "linear-gradient(135deg, var(--silver), var(--silver-light))",
+              }}
             >
               Sugerir cancion
             </Button>
@@ -77,10 +89,18 @@ export function PartySection() {
             transition={{ delay: 0.2 }}
             className="bg-background rounded-2xl p-6 border border-border text-center hover:shadow-md transition-shadow"
           >
-            <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: 'linear-gradient(135deg, var(--silver), var(--silver-shine))' }}>
+            <div
+              className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+              style={{
+                background:
+                  "linear-gradient(135deg, var(--silver), var(--silver-shine))",
+              }}
+            >
               <Shirt className="w-8 h-8 text-background" />
             </div>
-            <h4 className="text-lg font-medium text-foreground mb-2">Dress Code</h4>
+            <h4 className="text-lg font-medium text-foreground mb-2">
+              Dress Code
+            </h4>
             <p className="text-sm text-muted-foreground mb-4">
               Una orientacion para tu vestuario
             </p>
@@ -101,10 +121,18 @@ export function PartySection() {
             transition={{ delay: 0.3 }}
             className="bg-background rounded-2xl p-6 border border-border text-center hover:shadow-md transition-shadow"
           >
-            <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: 'linear-gradient(135deg, var(--silver-dark), var(--silver))' }}>
+            <div
+              className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+              style={{
+                background:
+                  "linear-gradient(135deg, var(--silver-dark), var(--silver))",
+              }}
+            >
               <Info className="w-8 h-8 text-background" />
             </div>
-            <h4 className="text-lg font-medium text-foreground mb-2">Tips y Notas</h4>
+            <h4 className="text-lg font-medium text-foreground mb-2">
+              Tips y Notas
+            </h4>
             <p className="text-sm text-muted-foreground mb-4">
               Informacion adicional para tener en cuenta
             </p>
@@ -130,17 +158,30 @@ export function PartySection() {
             <DialogDescription className="text-muted-foreground">
               Orientacion para tu vestuario
             </DialogDescription>
+            <DialogDescription>Dress code NEGRO</DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full" style={{ background: 'var(--silver)' }} />
-              <div className="w-12 h-12 rounded-full" style={{ background: 'var(--silver-light)' }} />
-              <div className="w-12 h-12 rounded-full" style={{ background: 'var(--silver-dark)' }} />
-              <div className="w-12 h-12 rounded-full" style={{ background: 'var(--silver-shine)' }} />
+            {/* <div className="flex items-center gap-4">
+              <div
+                className="w-12 h-12 rounded-full"
+                style={{ background: "var(--silver)" }}
+              />
+              <div
+                className="w-12 h-12 rounded-full"
+                style={{ background: "var(--silver-light)" }}
+              />
+              <div
+                className="w-12 h-12 rounded-full"
+                style={{ background: "var(--silver-dark)" }}
+              />
+              <div
+                className="w-12 h-12 rounded-full"
+                style={{ background: "var(--silver-shine)" }}
+              />
             </div>
             <p className="text-foreground">
               <strong>{dressCode.style}</strong>
-            </p>
+            </p> */}
             <ul className="space-y-2 text-muted-foreground">
               {dressCode.suggestions.map((suggestion, index) => (
                 <li key={index}>* {suggestion}</li>
@@ -165,11 +206,10 @@ export function PartySection() {
           <div className="space-y-4 py-4">
             <div className="space-y-3 text-foreground">
               {tips.map((tip, index) => (
-                <div 
-                  key={index} 
-                  className="p-3 rounded-lg bg-silver/10"
-                >
-                  <p className="font-medium">{tip.icon} {tip.title}</p>
+                <div key={index} className="p-3 rounded-lg bg-silver/10">
+                  <p className="font-medium">
+                    {tip.icon} {tip.title}
+                  </p>
                   <p className="text-sm text-muted-foreground">
                     {tip.description}
                   </p>
@@ -180,5 +220,5 @@ export function PartySection() {
         </DialogContent>
       </Dialog>
     </section>
-  )
+  );
 }

@@ -18,7 +18,7 @@ export function EventSection() {
   };
 
   const handleConfirmAttendance = () => {
-    const message = `¡Hola! Confirmo mi asistencia a los XV años de ${event.name} el 15 de Junio. 🎉`;
+    const message = `¡Hola! Confirmo mi asistencia a los XV años de ${event.name} el 8 de Agosto. 🎉`;
     window.open(generateWhatsAppLink(message), "_blank");
   };
 
@@ -60,8 +60,10 @@ export function EventSection() {
               Día
             </p>
             <Calendar className="w-8 h-8 text-silver mx-auto mb-4" />
-            <p className="text-foreground font-medium">Sabado 15 de Junio</p>
-            <p className="text-muted-foreground">17:00 hs</p>
+            <p className="text-foreground font-medium">
+              Sabado 8 de Agosto 2026
+            </p>
+            <p className="text-muted-foreground">19:00 hs</p>
             <Button
               variant="outline"
               size="sm"
@@ -84,7 +86,9 @@ export function EventSection() {
               Lugar
             </p>
             <MapPin className="w-8 h-8 text-silver-light mx-auto mb-4" />
-            <p className="text-foreground font-medium">Finca Los Pinos</p>
+            <p className="text-foreground font-medium">
+              Infiniti Eventos (Sede la floresta)
+            </p>
             <Button
               variant="default"
               size="sm"
@@ -111,7 +115,7 @@ export function EventSection() {
               Dirección
             </p>
             <Navigation className="w-8 h-8 text-silver mx-auto mb-4" />
-            <p className="text-foreground font-medium">Finca Los Pinos</p>
+            <p className="text-foreground font-medium">Av. 80 #46-21</p>
             <p className="text-muted-foreground">Medellin</p>
             <Button
               variant="outline"

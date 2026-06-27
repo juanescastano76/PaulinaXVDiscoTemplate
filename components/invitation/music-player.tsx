@@ -35,12 +35,7 @@ export function MusicPlayer() {
 
   return (
     <>
-      <audio
-        ref={audioRef}
-        loop
-        preload="auto"
-        src="/music/thousandYears.mp3"
-      />
+      <audio ref={audioRef} loop preload="auto" src="/music/OnTheFloor.mp3" />
 
       {/* Music prompt */}
       <AnimatePresence>
